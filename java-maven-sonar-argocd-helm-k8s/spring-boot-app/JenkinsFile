@@ -56,8 +56,7 @@ pipeline {
                     git config user.email "e_w_i_n_2_k@yahoo.com"
                     git config user.name "Erwin Balacuit"
                     BUILD_NUMBER=${BUILD_NUMBER}
-                    cd java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/
-                    number=$(cat deployment.yml | grep "image:" | awk -F':' '{print $NF}')
+                    number=$(cat java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml | grep "image:" | awk -F':' '{print $NF}')
                     sed -i "s/$number/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                     git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
